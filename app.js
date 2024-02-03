@@ -1,12 +1,11 @@
 require('dotenv').config()
 const express = require('express')
 const connectDB = require('./server/db/connect')
+const userRouter = require('./server/routes/userRoutes')
 const app = express()
 
-app.get('/', (req,res)=> {
-    res.send('This is the home page')
-})
-
+app.use(express.json())
+app.use('/api/v1/shoestore', userRouter)
 
 const port = process.env.PORT;
 const url = process.env.MONGO_URI
