@@ -15,4 +15,29 @@ const createUser = async (req,res) => {
     }
 }
 
-module.exports = {createUser}
+const loginUser = async (req,res) => {
+    const {email, password} = req.body
+
+    const user = await User.findOne({email})
+    if(user) {
+    const isValid = await user.comparePassword(password)
+    if(isValid) {
+        res.status(200).json({
+            status: 'success',
+            msg:user 
+        })
+    } else {
+        res.status(404).json({
+            status: 'fail',
+            msg: 'Invalid password'
+        })
+    }
+    } else {
+        res.status(404).json({
+            status:'fail',
+            msg: 'Invalid email'
+        })
+    }     
+}
+
+module.exports = {createUser, loginUser}
