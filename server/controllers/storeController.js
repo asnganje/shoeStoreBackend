@@ -15,12 +15,27 @@ const createStore = async (req, res)=> {
     }
 }
 
-const getStore = async (req, res)=> {
+// const getStore = async (req, res)=> {
+//     try {
+//         const store = await Store.findOne(req.body)
+//         res.status(200).json({
+//             status: 'success',
+//             msg: store
+//         })
+//     } catch (error) {
+//         res.status(404).json({
+//             status: 'fail',
+//             msg: error
+//         })
+//     }
+// }
+
+const getAllStores = async (req, res)=> {
     try {
-        const store = await Store.findOne(req.body)
+        const stores = await Store.find({})
         res.status(200).json({
             status: 'success',
-            msg: store
+            msg: stores
         })
     } catch (error) {
         res.status(404).json({
@@ -30,4 +45,4 @@ const getStore = async (req, res)=> {
     }
 }
 
-module.exports = {getStore, createStore}
+module.exports = {createStore, getAllStores}
