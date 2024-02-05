@@ -17,7 +17,7 @@ const createProduct = async (req, res) => {
 
 const getProductsByStoreId = async (req, res)=> {
     try {
-        const products = await Product.find(req.body)
+        const products = await Product.find(req.query)
         res.status(200).json({
             status: 'success',
             msg: products
