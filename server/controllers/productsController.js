@@ -31,7 +31,7 @@ const getProductsByStoreId = async (req, res)=> {
 }
 
 const deleteProduct = async (req,res) => {
-    const productId = req.body.id
+    const {productId} = req.query
     try {
         await Product.findByIdAndDelete(productId)
         res.status(200).json({
@@ -47,9 +47,8 @@ const deleteProduct = async (req,res) => {
 }
 
 const updateProduct = async (req,res) => {
-    const {id, ...rest} = req.body
     try {
-        const product = await Product.findByIdAndUpdate({_id: id}, rest, {
+        const product = await Product.findByIdAndUpdate({_id: req.query.productId}, req.body, {
             new: true,
             runValidators: true,
         })
