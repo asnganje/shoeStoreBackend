@@ -1,0 +1,6 @@
+services:
+  - name: shoestoreBackend
+    type: web
+    envVarsFile: .env
+    buildCommand: npm install
+    startCommand: npm start
